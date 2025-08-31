@@ -1,0 +1,54 @@
+<div class="login-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <div class="login-icon-header">
+        <mat-icon>scuba_diving</mat-icon>
+      </div>
+      <mat-card-title>{{ 'login.title' | translate }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="login-subtitle">
+        {{ 'login.welcome' | translate }}
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'common.email' | translate }}</mat-label>
+          <input matInput formControlName="email" type="email" required [readonly]="showDivingCenterSelect()" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'login.password' | translate }}</mat-label>
+          <input matInput formControlName="password" type="password" required [readonly]="showDivingCenterSelect()" />
+        </mat-form-field>
+
+        <div *ngIf="showDivingCenterSelect()">
+          <mat-form-field appearance="fill">
+            <mat-label>{{ 'login.selectDivingCenter' | translate }}</mat-label>
+            <mat-select formControlName="divingCenterId" class="fullwidth-select" required>
+              <mat-option *ngFor="let center of divingCenters(); trackBy: trackById" [value]="center.id">
+                {{ center.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="loginForm.get('divingCenterId')?.invalid && loginForm.get('divingCenterId')?.touched">
+              {{ 'login.error.centerSelection' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-card-actions>
+          <button class="btn" type="submit"
+                  [disabled]="loading() || loginForm.invalid"
+                  class="login-btn">
+            <ng-container *ngIf="loading(); else loginLabel">
+              <mat-spinner diameter="24"></mat-spinner>
+            </ng-container>
+            <ng-template #loginLabel>
+              {{ showDivingCenterSelect() ? ('login.button.credential' | translate) : ('login.button.login' | translate) }}
+            </ng-template>
+          </button>
+        </mat-card-actions>
+        <div *ngIf="error()" class="error-message">{{ error() }}</div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

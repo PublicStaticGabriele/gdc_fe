@@ -1,0 +1,159 @@
+@use 'abstracts/variables' as v;
+@use 'abstracts/fonts' as f;
+@use 'abstracts/mixins' as m;
+
+.login-wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 640px;
+  min-width: 380px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 16px;
+  @include m.box-shadow;
+  padding: v.$spacing-xl v.$spacing-xl;
+  border: 1.5px solid v.$primary-light;
+  margin: 0;
+
+  @include m.respond-max(md) { max-width: 99vw; padding: v.$spacing-lg v.$spacing-md; }
+  @include m.respond-max(sm) { padding: v.$spacing-md v.$spacing-xs; min-width: 98vw; }
+}
+
+mat-card-header, mat-card-content, mat-card-actions {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+mat-card-content, form, mat-card-actions {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .login-icon-header {
+    background: v.$primary-light;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    mat-icon {
+      color: v.$primary-dark;
+      font-size: 45px;
+      padding: 8px;
+      width: 54px;
+      height: 54px;
+      box-sizing: content-box;
+    }
+  }
+  mat-card-title {
+    width: 100%;
+    display: block;
+    font-family: f.$font-family-head !important;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.08rem;
+    color: v.$primary-dark;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    margin-top: 0.2rem;
+    line-height: 1.1;
+  }
+}
+
+mat-card-content {
+  width: 100%;
+  padding: 0;
+}
+
+.login-subtitle {
+  width: 100%;
+  font-size: 1.13rem;
+  font-family: f.$font-family-main !important;
+  color: v.$accent-main;
+  opacity: .93;
+  text-align: center;
+  margin-bottom: v.$spacing-md;
+  margin-top: 0;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-md;
+  .mat-form-field {
+    width: 100%;
+    font-size: f.$font-size-base;
+    background: v.$surface-main;
+    border-radius: v.$radius-sm;
+    margin-bottom: v.$spacing-xs;
+  }
+  .mat-mdc-form-field{
+    width: 100%;
+  }
+}
+
+mat-card-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: v.$spacing-sm;
+  align-items: center;
+  margin: v.$spacing-md 0 0 0;
+}
+
+.login-btn {
+  @include m.button-base;
+  width: 100%;
+  font-size: 1.20rem;
+  font-family: f.$font-family-head !important;
+  background: v.$primary-main;
+  color: v.$text-inverse;
+  margin-top: 0;
+  padding: v.$spacing-sm 0;
+  box-shadow: 0 2px 8px rgba(94,174,253,0.13);
+  &:hover, &:focus {
+    background: v.$primary-dark;
+    color: v.$text-inverse;
+  }
+}
+
+.error-message {
+  width: 100%;
+  margin-top: v.$spacing-xs;
+  background: v.$error;
+  color: v.$text-inverse;
+  border-radius: v.$radius-sm;
+  padding: v.$spacing-xs 0.75rem;
+  font-size: f.$font-size-sm;
+  text-align: center;
+  font-family: f.$font-family-main;
+}
+
+mat-spinner {
+  margin: auto;
+  display: block;
+}
+
+@media (max-width: v.$breakpoint-xs) {
+  mat-card {
+    padding: v.$spacing-xs !important;
+    max-width: 99vw;
+  }
+}

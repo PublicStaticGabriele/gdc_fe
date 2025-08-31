@@ -1,0 +1,45 @@
+// --- Palette colori principali ---
+$primary-main: #5eaefd;
+$primary-dark: #326ba8;
+$primary-light: #cceaff;
+$accent-main: #38d9fd;
+$accent-dark: #109ec9;
+$surface-main: #f6faff;
+$surface-soft: #eaf6fa;
+$text-main: #19355b;
+$text-light: #f3f3f3;
+$text-inverse: #fff;
+$success: #3cb371;
+$warning: #ffc857;
+$error: #ff3860;
+$info: #249cf2;
+$border-main: #c7e1fc;
+
+// --- Spaziatura, radius, shadow ---
+$radius-main: 12px;
+$radius-sm: 6px;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+$spacing-xl: 5rem; // <-- ora presente!
+
+$z-index-header: 1000;
+$shadow-main: 0 2px 12px rgba(94,174,253,.10);
+
+// --- Breakpoint singoli ---
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1680px;
+
+// --- Breakpoint map per mixin ---
+$breakpoints: (
+  xs: $breakpoint-xs,
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl
+);

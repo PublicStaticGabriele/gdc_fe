@@ -1,0 +1,108 @@
+@use 'abstracts/variables' as v;
+@use 'abstracts/fonts' as f;
+
+.changeemail-dialog-panel {
+  position: relative;
+  z-index: v.$z-index-header + 15;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: v.$radius-main;
+  box-shadow: v.$shadow-main;
+  padding: v.$spacing-sm v.$spacing-md v.$spacing-md v.$spacing-md;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: f.$font-family-main;
+  box-sizing: border-box;
+  overflow: visible;
+
+  @media (max-width: v.$breakpoint-xs) {
+    padding: v.$spacing-xs v.$spacing-xs v.$spacing-sm v.$spacing-xs;
+    max-width: 98vw;
+  }
+
+  &__title {
+    font-family: f.$font-family-head;
+    font-size: f.$font-size-lg;
+    font-weight: f.$font-weight-bold;
+    color: v.$primary-dark;
+    padding: v.$spacing-sm;
+    margin-bottom: v.$spacing-xs;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+
+  &__info {
+    font-size: f.$font-size-md;
+    color: v.$text-main;
+    margin-bottom: v.$spacing-md;
+    text-align: center;
+    word-break: break-all;
+  }
+
+  &__input {
+    width: 100%;
+    margin-bottom: v.$spacing-sm;
+    input {
+      width: 100%;
+      border: 1px solid v.$border-main;
+      border-radius: v.$radius-sm;
+      padding: 0.68rem v.$spacing-xs;
+      font-size: f.$font-size-base;
+      font-family: f.$font-family-main;
+      color: v.$text-main;
+      background: v.$surface-main;
+      transition: border-color 0.14s;
+      &:focus {
+        outline: none;
+        border-color: v.$primary-main;
+      }
+      &::placeholder {
+        color: v.$primary-dark;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__error {
+    min-height: 1.4em;
+    margin: 0.18rem 0 0.2rem 0;
+    color: v.$error;
+    font-size: f.$font-size-sm;
+    font-family: f.$font-family-main;
+    font-weight: f.$font-weight-bold;
+    text-align: left;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: flex-start;
+    transition: color 0.18s;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: v.$spacing-sm;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__feedback {
+    width: 100%;
+    margin: 0.25rem 0;
+    font-size: f.$font-size-sm;
+    text-align: center;
+    &.error {
+      color: v.$error;
+      font-weight: f.$font-weight-bold;
+    }
+    &.success {
+      color: v.$success;
+      font-weight: f.$font-weight-bold;
+    }
+  }
+}

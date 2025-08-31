@@ -1,0 +1,70 @@
+<div class="changeemail-dialog-panel">
+  <h2 mat-dialog-title class="changeemail-dialog-panel__title">
+    {{ 'changeEmail.title' | translate }}
+  </h2>
+
+  <mat-dialog-content>
+    @if (step === 'form') {
+      <form [formGroup]="requestForm" (ngSubmit)="sendCode()">
+        <div class="changeemail-dialog-panel__input">
+          <input
+            type="email"
+            formControlName="email"
+            [placeholder]="'changeEmail.newEmail' | translate" />
+          <div class="changeemail-dialog-panel__error">
+            @if (requestForm.get('email')?.touched && requestForm.get('email')?.errors?.['required']) {
+              {{ 'changeEmail.error.required' | translate }}
+            }
+            @if (requestForm.get('email')?.touched && requestForm.get('email')?.errors?.['email']) {
+              {{ 'changeEmail.error.invalid' | translate }}
+            }
+          </div>
+        </div>
+        <div mat-dialog-actions class="changeemail-dialog-panel__actions">
+          <button class="btn" type="button" (click)="closeRef()">
+            {{ 'common.cancel' | translate }}
+          </button>
+          <button class="btn" type="submit" [disabled]="requestForm.invalid || loading">
+            {{ 'changeEmail.button.sendCode' | translate }}
+          </button>
+        </div>
+        @if (errorMsg) {
+          <div class="changeemail-dialog-panel__feedback error">{{errorMsg}}</div>
+        }
+      </form>
+    } @else if (step === 'confirm') {
+      <form [formGroup]="codeForm" (ngSubmit)="verifyCode()">
+        <div class="changeemail-dialog-panel__info">
+          {{ 'changeEmail.codeSent' | translate:{email: emailToConfirm} }}
+        </div>
+        <div class="changeemail-dialog-panel__input">
+          <input
+            type="text"
+            formControlName="code"
+            maxlength="8"
+            autocomplete="one-time-code"
+            [placeholder]="'common.otpCode' | translate" />
+          <div class="changeemail-dialog-panel__error">
+            @if (codeForm.get('code')?.touched && codeForm.get('code')?.errors?.['required']) {
+              {{ 'changeEmail.error.codeRequired' | translate }}
+            }
+            @if (codeForm.get('code')?.touched && codeForm.get('code')?.errors?.['minlength']) {
+              {{ 'changeEmail.error.codeShort' | translate }}
+            }
+          </div>
+        </div>
+        <div mat-dialog-actions class="changeemail-dialog-panel__actions">
+          <button class="btn" (click)="onCancel()">
+            {{ 'common.cancel' | translate }}
+          </button>
+          <button class="btn" type="submit" [disabled]="codeForm.invalid || loading">
+            {{ 'common.confirm' | translate }}
+          </button>
+        </div>
+        @if (errorMsg) {
+          <div class="changeemail-dialog-panel__feedback error">{{errorMsg}}</div>
+        }
+      </form>
+    }
+  </mat-dialog-content>
+</div>

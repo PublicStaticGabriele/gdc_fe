@@ -1,0 +1,80 @@
+@use './variables' as v;
+@use './fonts' as f;
+@use 'sass:map';
+
+// FLEX/CENTER utility
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+// Responsive BREAKPOINTS (mobile-first)
+@mixin respond-max($breakpoint) {
+  @media (max-width: map.get(v.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+@mixin respond-min($breakpoint) {
+  @media (min-width: map.get(v.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// GRID system, columns & gap
+@mixin grid($cols: 12, $gap: v.$spacing-sm) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}
+
+// BOX SHADOW
+@mixin box-shadow($level: main) {
+  @if $level == main { box-shadow: v.$shadow-main; }
+}
+
+// BUTTON utility
+
+@mixin button-base{
+  font-family: f.$font-family-main;
+  font-weight: f.$font-weight-bold;
+  padding: v.$spacing-xs v.$spacing-md;
+  border-radius: v.$radius-main;
+  font-size: f.$font-size-base;
+  cursor: pointer;
+  border: none;
+  gap: 0.6rem;
+  width: 100%;
+  background: #f8faff;
+  color: v.$primary-dark;
+  transition: background 0.14s, color 0.14s;
+  margin-bottom: 0.5rem;
+}
+
+@mixin button-base-center {
+  @include button-base;
+  @include flex-center;
+}
+
+// TRANSITION
+@mixin transition($params: all 0.15s ease) {
+  transition: $params;
+}
+
+// Accessibility: visually hidden
+@mixin visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+// Utility: text truncate
+@mixin text-truncate($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

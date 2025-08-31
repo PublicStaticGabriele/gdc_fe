@@ -1,0 +1,33 @@
+@use 'abstracts/variables' as v;
+@use 'abstracts/fonts' as f;
+@use 'abstracts/mixins' as m;
+
+.btn-center{
+  @include m.button-base-center;
+  &:hover, &:focus {
+    background: v.$primary-light;
+    color: v.$primary-dark;
+  }
+  &:disabled {
+    background: v.$border-main;
+    color: v.$text-main;
+    opacity: 0.45;
+  }
+}
+.btn {
+  @include m.button-base;
+  &:hover, &:focus {
+    background: v.$primary-light;
+    color: v.$primary-dark;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background: v.$border-main;
+    color: v.$text-main;
+    opacity: 0.45;
+  }
+  @include m.respond-max(sm) {
+    font-size: f.$font-size-sm;
+    padding: v.$spacing-xs v.$spacing-sm;
+  }
+}

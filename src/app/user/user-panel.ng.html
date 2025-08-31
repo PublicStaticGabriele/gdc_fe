@@ -1,0 +1,130 @@
+<!-- user-panel.component.html -->
+<div class="userpanel-root">
+  <!-- Avatar come bottone sempre visibile -->
+  <button mat-icon-button class="userpanel-avatar-btn" (click)="togglePanel()" aria-label="Open user panel">
+    <img
+      priority
+      [ngSrc]="avatarUrl? avatarUrl: avatarFallbackValue"
+      class="userpanel-avatar-img"
+      width="42"
+      height="42"
+      alt="Profile photo">
+  </button>
+
+  <!-- Pannello a comparsa (slide-in) -->
+  <div class="userpanel-slide" *ngIf="isProfileOpen()" tabindex="-1">
+
+    <div class="userpanel-header">
+      <div class="userpanel-header-avatar">
+      <img [ngSrc]="avatarUrl? avatarUrl: avatarFallbackValue" width="54" height="54" alt="Profile photo">
+      <button mat-icon-button class="userpanel-close-btn" (click)="togglePanel()" aria-label="Close">
+        <mat-icon>close</mat-icon>
+      </button>
+      </div>
+      <div class="userpanel-header-title"><span>{{'common.appTitle' | translate}}</span></div>
+    </div>
+
+    <div class="userpanel-body">
+      <div *ngIf="user()">
+        <div class="userpanel-detail-row">
+          <b>{{ 'common.email' | translate }}:</b> {{ user()?.email }}
+        </div>
+        <div class="userpanel-detail-row">
+          <b>{{ 'common.username' | translate }}:</b> {{ user()?.username }}
+        </div>
+        <div class="userpanel-detail-row">
+          <b>{{ 'common.role' | translate }}:</b> {{ user()?.role }}
+        </div>
+        <div class="userpanel-detail-row">
+          <b>{{ 'userPanel.registrationDate' | translate }}:</b> {{ user()?.createdDate }}
+        </div>
+        <div class="userpanel-detail-row">
+          <b>{{ 'divingItem.company' | translate }}:</b> {{ user()?.divingCompany?.name }} ({{ user()?.divingCompany?.country }})
+        </div>
+
+        <div class="userpanel-actions">
+          <h4>{{ 'userPanel.quickActions' | translate }}:</h4>
+          <button class="btn-center" (click)="onResetPassword()">
+            <mat-icon>lock_reset</mat-icon>
+            <span>{{ 'userPanel.button.resetPassword' | translate }}</span>
+          </button>
+          <button class="btn-center" (click)="onChangeEmail()">
+            <mat-icon>mail_outline</mat-icon>
+            <span>{{ 'userPanel.button.changeEmail' | translate }}</span>
+          </button>
+          <div class="userpanel-upload-group">
+            <div>
+              <input type="file" accept="image/*" #avatarInput hidden (change)="uploadAvatar($event)"/>
+              <button class="btn-center" (click)="avatarInput.click()">
+                <mat-icon>upload</mat-icon>
+                {{ 'userPanel.button.uploadPhoto' | translate }}
+              </button>
+              <span *ngIf="uploadingPhoto()" class="userpanel-uploading-label">
+              {{ 'common.uploading3Dot' | translate }}
+            </span>
+            </div>
+            <div style="margin-top:8px;">
+              <input type="file" accept="image/*" #dashboardInput hidden (change)="uploadDashboardImage($event)"/>
+              <button class="btn-center" (click)="dashboardInput.click()">
+                <mat-icon>upload</mat-icon>
+                {{ 'userPanel.button.uploadDashboardImage' | translate }}
+              </button>
+              <span *ngIf="uploadingPhoto()" class="userpanel-uploading-label">
+              {{ 'common.uploading3Dot' | translate }}
+            </span>
+            </div>
+          </div>
+          <button class="btn-center logout" (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>{{ 'userPanel.button.logout' | translate }}</span>
+          </button>
+        </div>
+
+        <div class="userpanel-centers">
+          <h4>{{ 'userPanel.listDivingCenter' | translate }}:</h4>
+          <ng-container *ngIf="user()?.divingCenters?.length; else noCenters">
+            <div *ngFor="let center of user()?.divingCenters; let i = index" class="userpanel-center-card">
+              <div class="userpanel-center-summary" (click)="toggleCenter(i)">
+                <span><b>{{ center.name }}</b></span>
+                <button mat-icon-button class="userpanel-center-expand" type="button">
+                  <mat-icon>{{ expandedCenter === i ? 'expand_less' : 'expand_more' }}</mat-icon>
+                </button>
+              </div>
+              <div class="userpanel-center-details" *ngIf="expandedCenter === i">
+                <div class="userpanel-detail-row">
+                  <span class="detail-label">{{ 'common.email' | translate }}: </span>
+                  <span class="detail-value">{{ center.contactEmail || '-' }}</span>
+                </div>
+                <div class="userpanel-detail-row">
+                  <span class="detail-label">{{ 'common.phone' | translate }}: </span>
+                  <span class="detail-value">{{ center.contactPhone || '-' }}</span>
+                </div>
+                <div class="userpanel-detail-row">
+                  <span class="detail-label">{{ 'common.address' | translate }}: </span>
+                  <span class="detail-value">{{ center.location || '-' }}</span>
+                </div>
+                <div class="userpanel-detail-row">
+                  <span class="detail-label">{{ 'common.website' | translate }}: </span>
+                  <span class="detail-value">{{ center.website || '-' }}</span>
+                </div>
+                <div class="userpanel-center-action" *ngIf="authService.getSelectedDivingCenter?.() !== center.id">
+                  <button mat-button color="primary" class="userpanel-center-btn" (click)="switchDivingCenter(center)">
+                    {{ 'userPanel.button.loginDivingCenter' | translate }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noCenters>
+            <div class="userpanel-no-centers">
+              {{ 'userPanel.error.noDivingCenter' | translate }}:
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div *ngIf="!user()">
+        {{ 'common.loading3Dot' | translate }}
+      </div>
+    </div>
+  </div>
+</div>

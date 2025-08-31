@@ -1,0 +1,16 @@
+@use 'abstracts/variables' as v;
+@use 'abstracts/fonts' as f;
+@use 'abstracts/mixins' as m;
+
+.card {
+  background: v.$surface-main;
+  border-radius: v.$radius-main;
+  @include m.box-shadow;
+  font-family: f.$font-family-main;
+  padding: v.$spacing-md;
+  color: v.$text-main;
+
+  @include m.respond-max(sm) {
+    padding: v.$spacing-sm;
+  }
+}

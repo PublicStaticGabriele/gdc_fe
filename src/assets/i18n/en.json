@@ -1,0 +1,94 @@
+{
+  "common": {
+    "appTitle": "Diving Center Management System",
+    "email": "Email",
+    "username": "Username",
+    "phone": "Number",
+    "address": "Location",
+    "website": "Website",
+    "role": "Role",
+    "loading3Dot": "Loading...",
+    "Uploading...": "Uploading...",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "otpCode": "OTP Code",
+    "redirect.login" : "You will be redirected to login page (in all tabs)",
+    "button": {
+      "reset": "Reset"
+    },
+    "error": {
+      "generic": "System error, please contact system administrator"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "password": "Password",
+    "welcome": "Enjoy your next dive",
+    "selectDivingCenter": "Select your diving center",
+    "insertCredential": "Type in your credential",
+    "button": {
+      "login": "Let's go",
+      "credential": "Confirm and let's go"
+    },
+    "error": {
+      "centerSelection": "A diving center must be selected",
+      "noDivingCenter": "No diving center have been associated with this account"
+    }
+  },
+  "dashboard": {
+    "title": "Welcome back "
+  },
+  "userPanel": {
+    "listDivingCenter": "Your diving centers",
+    "registrationDate": "Registration date",
+    "quickActions": "Quick actions",
+    "error": {
+      "noDivingCenter": "No diving center found"
+    },
+    "button": {
+      "loginDivingCenter": "Change dive center",
+      "resetPassword": "Reset Password",
+      "changeEmail": "Change Email",
+      "logout": "Logout",
+      "uploadPhoto": "Change avatar",
+      "uploadDashboardImage": "Dashboard image"
+    }
+  },
+  "resetPasswordDialog": {
+    "title": "Reset password panel",
+    "sendTo": "A link will be sent to",
+    "button": {
+      "send": "Yes, send it"
+    }
+  },
+  "resetPassword": {
+    "newPassword": "Your new password",
+    "confirmPassword": "Again, just to make sure",
+    "success": "Password changed successfully",
+    "error": {
+      "required": "Please, enter a password",
+      "minlength": "Please, enter at least 8 character",
+      "passwordMismatch": "The two password must match!",
+      "tokenNotFound": "Request not complete, who are you?"
+    }
+  },
+  "changeEmail": {
+    "title": "Change email panel",
+    "newEmail": "Type your new email address",
+    "codeSent": "Find your code in the email address",
+    "error": {
+      "required": "Email address is required",
+      "invalid": "Email address is invalid",
+      "emailNotFound": "ef",
+      "codeRequired": "The OTP code is required",
+      "codeShort": "The OTP code must be 6 digit",
+      "codeNotValid": "The OTP code is not valid"
+    },
+    "button": {
+      "sendCode": "Send code to email"
+    }
+  },
+  "divingItem": {
+    "company": "Diving company"
+  }
+}

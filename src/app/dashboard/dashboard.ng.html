@@ -1,0 +1,14 @@
+<mat-card class="dashboard-card">
+  <mat-card-content>
+    <div class="dashboard-topbar" [ngStyle]="{ 'background-image': userDashboardImageUrl ? userDashboardImageUrl : dashboardFallbackValue }">
+      <span class="dashboard-title">{{ 'dashboard.title' | translate }} {{ userName }}</span>
+      <app-user-panel (username)="userName = $event" class="dashboard-avatar-slot"></app-user-panel>
+    </div>
+    <mat-tab-group [selectedIndex]="0" (selectedIndexChange)="onTabChange($event)">
+      @for (tab of tabs(); let i = $index; track $index) {
+        <mat-tab [label]="tab.label"></mat-tab>
+      }
+    </mat-tab-group>
+    <router-outlet></router-outlet>
+  </mat-card-content>
+</mat-card>

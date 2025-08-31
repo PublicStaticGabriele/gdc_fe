@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+
+$lightblue-theme: mat.define-theme((
+  color: (theme-type: light),
+));
+
+@include mat.theme($lightblue-theme);
+
+:root {
+  --md-sys-color-primary: #5eaefd;
+  --md-ref-palette-primary40: #5eaefd;
+  --md-ref-palette-primary80: #cceaff;
+
+}

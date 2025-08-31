@@ -1,0 +1,48 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/fonts' as f;
+@use '../abstracts/mixins' as m;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  font-family: f.$font-family-main
+}
+
+a {
+  color: v.$primary-main;
+  text-decoration: none;
+  &:hover { color: v.$primary-dark; }
+}
+
+h1, h2, h3, h4 {
+  font-family: f.$font-family-head;
+  color: v.$text-main;
+  margin-top: 0;
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: v.$surface-soft;
+  overflow: hidden;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+  background-color: #fff !important;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.13) !important;
+  border: 1px solid #e0ecfa !important;
+  z-index: 2001 !important;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel .mat-mdc-option.mdc-list-item:hover,
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel .mat-mdc-option.mdc-list-item.mat-mdc-option-active {
+  background-color: #eaf6fa !important;   /* oppure v.$primary-light */
+  color: #19355b !important;              /* oppure v.$primary-dark */
+  transition: background 0.18s, color 0.18s;
+}
